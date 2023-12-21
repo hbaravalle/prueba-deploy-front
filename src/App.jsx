@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./App.module.css";
 
 function App() {
   const [inputNombre, setInputNombre] = useState("");
@@ -32,55 +33,60 @@ function App() {
 
   return (
     <>
-      <h1>Sarasa</h1>
-      <img src={import.meta.env.VITE_BUCKET_URL + "hello.jpeg"} alt="" />
-      <form
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(e);
-          setInputNombre("");
-          setInputApellido("");
-        }}
-      >
-        <div>
-          <label htmlFor="">Nombre</label>
-          <input
-            type="text"
-            name="firstname"
-            id="firstname"
-            value={inputNombre}
-            onChange={(e) => setInputNombre(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Apellido</label>
-          <input
-            type="text"
-            name="lastname"
-            id="lastname"
-            value={inputApellido}
-            onChange={(e) => setInputApellido(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Avatar</label>
-          <input type="file" name="avatar" id="avatar" />
-        </div>
-        <div>
-          <input type="submit" />
-        </div>
-      </form>
-      <h2>Listado de usuarios</h2>
-      <ul>
-        {users.map((user) => {
-          return (
-            <li>
-              {user.firstname} {user.lastname}
-            </li>
-          );
-        })}
-      </ul>
+      <div className={styles.container}>
+        <h1>Proyecto de prueba</h1>
+        <form
+          action=""
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+            setInputNombre("");
+            setInputApellido("");
+          }}
+        >
+          <div>
+            <label htmlFor="">Nombre</label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              value={inputNombre}
+              onChange={(e) => setInputNombre(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Apellido</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              value={inputApellido}
+              onChange={(e) => setInputApellido(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Avatar</label>
+            <input type="file" name="avatar" id="avatar" />
+          </div>
+          <div>
+            <input type="submit" />
+          </div>
+        </form>
+        <h2>Listado de usuarios</h2>
+        <ul>
+          {users.map((user) => {
+            return (
+              <li>
+                <img
+                  src={import.meta.env.VITE_BUCKET_URL + user.avatar}
+                  alt=""
+                />
+                {user.firstname} {user.lastname}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }
